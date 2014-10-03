@@ -1,0 +1,29 @@
+/* ==============================================================================================
+   Código
+   ============================================================================================== */
+
+code,
+pre {
+  border: 1px solid @code-border;
+  color: @gray-dark;
+  font-size: @font-size-small;
+  font-family: @mono-font-family;
+  background-color: @code-background;
+  vertical-align: middle;
+  .border-radius( @border-radius-small );
+}
+
+/*
+ * 1. Garante que não quebre em 2 linhas
+ */
+code {
+  padding: 1px 3px;
+  color: #D14;
+  white-space: nowrap; /* 1 */
+}
+
+pre {
+  display: block;
+  margin-bottom: @computed-line-height;
+  padding: ( ( @computed-line-height - 1 ) / 2 );
+}

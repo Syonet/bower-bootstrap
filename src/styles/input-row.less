@@ -1,0 +1,33 @@
+/* ==============================================================================================
+   Input Row
+   ============================================================================================== */
+
+/*
+ * 1. Evita que herde borda da tabela, quando for colocado dentro de uma
+ * 2. Deixa um espaçamento entre um elemento e outro
+ */
+.syo-input-row {
+  display: table;
+  border-collapse: separate; /* 1 */
+
+  > input,
+  > select,
+  > .syo-input-row-addon {
+    display: table-cell;
+  }
+
+  > input,
+  > select {
+    width: 100%;
+  }
+}
+
+.syo-input-row-addon {
+  width: 1%;
+  padding: 0 3px;
+  white-space: nowrap;
+  vertical-align: middle;
+
+  &:first-child { padding-left: 0; }
+  &:last-child  { padding-right: 0; }
+}

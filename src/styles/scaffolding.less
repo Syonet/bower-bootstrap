@@ -1,0 +1,75 @@
+/* ==============================================================================================
+   Scaffolding
+   ============================================================================================== */
+
+/*
+ * 1. Sobrescreve o box-sizing utilizado no Normalize.css
+ */
+*,
+input[type="search"] { /* 1 */
+  .box-sizing( border-box );
+}
+
+/*
+ * Redimensionamento horizontal do textarea pode quebrar o layout de maneira inesperada
+ */
+textarea {
+  resize: vertical;
+}
+
+/* Scaffolding - Body
+   ------------------ */
+
+html {
+  font-size: @font-size-base;
+  line-height: @base-line-height;
+}
+
+body {
+  color: @text-color;
+  font-family: @base-font-family;
+  background: @body-color;
+}
+
+/* Scaffolding - Links
+   ------------------- */
+
+a {
+  #link();
+}
+
+/* Scaffolding - Outros
+   -------------------- */
+
+/*
+ * Imagens responsivas.
+ * 1. Seta a largura máxima para não ficar maior que seus parentes
+ * 2. Dimensiona a altura de acordo com a largura, senão vai esticar/compactar a imagem
+ */
+img {
+  display: inline-block;
+  max-width: 100%; /* 1 */
+  height: auto; /* 2 */
+}
+
+/* horizontal rule do HTML5Boilerplate */
+hr {
+  display: block;
+  height: 1px;
+  border: 0;
+  border-top: 1px solid #ccc;
+  margin: 1em 0;
+  padding: 0;
+}
+
+/*
+ * Estilos de seleção de texto. Eles tem que ficar separados ou não funcionarão.
+ * http://stackoverflow.com/a/19075802/2083599
+ */
+::-moz-selection {
+  .text-selection();
+}
+
+::selection {
+  .text-selection();
+}

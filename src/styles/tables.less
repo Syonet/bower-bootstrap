@@ -1,0 +1,224 @@
+/* ==============================================================================================
+   Tabelas
+   ============================================================================================== */
+
+table {
+  max-width: 100%;
+  border-collapse: collapse;
+  border-spacing: 0;
+
+  th small {
+    font-weight: normal;
+  }
+}
+
+/* Tabela - principal
+   ------------------ */
+
+/*
+ * Estilos comuns pra todas as tabelas
+ * 1. Sobrescreve a especificidade de alinhamento de texto com estas classes
+ */
+.syo-table {
+  width: 100%;
+  margin-bottom: @computed-line-height;
+  border-collapse: separate;
+  border: 1px solid @table-border-color;
+  border-left: 0;
+  background-color: @table-bg;
+  table-layout: fixed;
+  .border-radius( @base-border-radius );
+
+  td, /* 1 */
+  th { /* 1 */
+    padding: @padding-base-vertical @padding-base-horizontal;
+    line-height: @base-line-height;
+    border-top: 1px solid @table-border-color;
+    border-left: 1px solid @table-border-color;
+    color: @table-color;
+    text-align: left;
+    vertical-align: top;
+
+    &.text-center { text-align: center; }
+    &.text-right { text-align: right; }
+    &.text-justify { text-align: justify; }
+  }
+
+  th {
+    font-weight: bold;
+  }
+
+  // Previne borda dupla
+  caption + thead tr:first-child th,
+  caption + tbody tr:first-child th,
+  caption + tbody tr:first-child td,
+  colgroup + thead tr:first-child th,
+  colgroup + tbody tr:first-child th,
+  colgroup + tbody tr:first-child td,
+  thead:first-child tr:first-child th,
+  tbody:first-child tr:first-child th,
+  tbody:first-child tr:first-child td,
+  tfoot:first-child tr:first-child td {
+    border-top: 0;
+  }
+
+  /* Arredonda canto superior esquerdo/direito do primeiro tr */
+  thead:first-of-type,
+  tbody:first-of-type {
+    &,
+    tr:first-child {
+      .border-radius-top( @base-border-radius );
+    }
+
+    tr:first-child td,
+    tr:first-child th {
+      &:first-child { .border-top-left-radius( @base-border-radius ) };
+      &:last-child { .border-top-right-radius( @base-border-radius ) };
+    }
+  }
+
+  /* Desfaz arredondamento do canto superior esquerdo/direito de table com thead + tbody */
+  thead:first-of-type ~ tbody:first-of-type {
+    &,
+    tr:first-child td,
+    tr:first-child th {
+      .border-radius-top( 0 );
+    }
+  }
+
+  tbody:last-child,
+  tfoot:last-of-type {
+    &, tr:last-child {
+      .border-radius-bottom( @base-border-radius );
+    }
+
+    tr:last-child td,
+    tr:last-child th {
+      &:first-child { .border-bottom-left-radius( @base-border-radius ); }
+      &:last-child { .border-bottom-right-radius( @base-border-radius ); }
+    }
+  }
+}
+
+/* Tabela - Estados de linha/célula
+   -------------------------------- */
+
+.syo-table > tbody {
+  tr.syo-active td,
+  tr.syo-active th,
+  th.syo-active,
+  td.syo-active {
+    //color: @table-color;
+    background-color: @table-active-bg;
+  }
+
+  tr.syo-success td,
+  tr.syo-success th,
+  th.syo-success,
+  td.syo-success {
+    color: @table-success-color;
+    background-color: @table-success-bg;
+  }
+
+  tr.syo-error td,
+  tr.syo-error th,
+  th.syo-error,
+  td.syo-error {
+    color: @table-error-color;
+    background-color: @table-error-bg;
+  }
+}
+
+/* Tabela - Headers/Footers
+   ------------------------ */
+.syo-table > thead,
+.syo-table > tbody > tr > th,
+.syo-table > tfoot {
+  color: @gray-dark;
+  text-shadow: 0 1px 0 #FFF;
+  #gradient .brand();
+}
+
+/* Tabela - Estilo striped
+   ----------------------- */
+
+/*
+ * 1. Linhas pares (2, 4, 6...) receberão background para destacar-se das demais
+ */
+.syo-table-striped {
+  // Utiliza-se seletores "nested" pra poder reutilizar no .syo-table-responsive
+  > tbody {
+    /* 1 */
+    > tr:nth-child( even ) > td,
+    > tr:nth-child( even ) > th {
+      background-color: @table-stripe-color;
+    }
+  }
+}
+
+/* Tabela - Estilo hover
+   --------------------- */
+
+.syo-table-hover > tbody tr:not(.syo-disabled):hover {
+  background-color: @table-stripe-color;
+}
+
+/* Tabela - Tabela responsiva
+   -------------------------- */
+@media screen and ( max-width: @screen-tiny-max ) {
+  /*
+   * 1. Faz tabelas não se parecerem com tabelas mais
+   * 2. Oculta os headers/footers, mas mantendo a acessibilidade
+   * 3. Evita borda dupla
+   */
+  .syo-table-responsive {
+    border: none;
+    .syo-table-striped;
+
+    &,
+    thead,
+    tbody,
+    tr,
+    td,
+    th {
+      display: block; /* 1 */
+    }
+
+    thead,
+    tfoot { /* 2 */
+      position: absolute;
+      top: -9999em;
+      left: -9999em;
+    }
+
+    tr {
+      border: 1px solid @table-border-color;
+
+      + tr {
+        border-top: none; /* 3 */
+      }
+    }
+
+    th,
+    td {
+      position: relative;
+      padding-left: 45%;
+      border: none;
+      border-bottom: 1px solid @table-border-color;
+      white-space: normal;
+      text-align: left;
+
+      &:before {
+        position: absolute;
+        top: 4px;
+        left: 8px;
+        white-space: nowrap;
+        width: 40%;
+        padding-right: 10px;
+        text-align: left;
+        font-weight: bold;
+        content: attr(data-title);
+      }
+    }
+  }
+}

@@ -1,0 +1,78 @@
+/* ==============================================================================================
+   Navs
+   ============================================================================================== */
+
+/*
+ * Estilos globais de componentes Nav
+ * 1. Melhora visualização da outline no conteúdo esquerdo da navbar
+ */
+.syo-nav {
+  margin-left: 1px; /* 1 */
+  margin-bottom: @computed-line-height;
+  list-style: none;
+
+  a {
+    text-decoration: none;
+  }
+}
+
+/* Navs - Nav list
+   --------------- */
+
+/*
+ * 1. Estilo do header
+ * 2. Corrige o border-radius do primeiro elemento
+ * 3. Corrige o border-radius do último elemento
+ * 4. Desfaz margin de linhas com .row
+ */
+.syo-nav-list {
+  border: 1px solid @nav-border-color;
+  .border-radius( @base-border-radius );
+  .box-shadow( 0 1px 4px fade( #000, 10% ) );
+
+  > li {
+    border-bottom: 1px solid @nav-border-color;
+    background: @body-color;
+
+    &.row {
+      margin-left: 0;
+      margin-right: 0;
+    }
+
+    > a {
+      display: block;
+      padding: @padding-base-vertical @padding-base-horizontal;
+
+      &:hover {
+        background: @brand-default-hover;
+      }
+    }
+
+    /* 1 */
+    &.syo-nav-header {
+      padding: @padding-base-vertical @padding-base-horizontal;
+      color: @gray-dark;
+      font-weight: bold;
+      font-size: @font-size-small;
+      text-shadow: 0 1px 0 #fff;
+      #gradient .brand();
+    }
+
+    /* 2 */
+    &:first-child {
+      .border-radius-top( @base-border-radius );
+
+      > a:first-child { .border-top-left-radius( @base-border-radius ); }
+      > a:last-child { .border-top-right-radius( @base-border-radius ); }
+    }
+
+    /* 3 */
+    &:last-child {
+      border-bottom: 0;
+      .border-radius-bottom( @base-border-radius );
+
+      > a:first-child { .border-bottom-left-radius( @base-border-radius ); }
+      > a:last-child { .border-bottom-right-radius( @base-border-radius ); }
+    }
+  }
+}

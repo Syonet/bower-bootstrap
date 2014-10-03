@@ -1,0 +1,22 @@
+/* ==============================================================================================
+   ProgressBar
+   ============================================================================================== */
+
+/*
+ * 1. Faz com que o progressbar sempre tenha 100%, mesmo quando dentro de um elemento flexbox.
+ */
+.syo-progressbar {
+  overflow: hidden;
+  width: 100%; /* 1 */
+  height: 2em;
+  border: 1px solid @gray-light;
+  .border-radius( @base-border-radius );
+
+  > .syo-progressbar-value {
+    float: left;
+    width: 0; // O width deve ser setado via CSS inline.
+    height: 100%;
+    border-right: 1px solid @gray-light;
+    .progressbar();
+  }
+}
