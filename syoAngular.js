@@ -1,5 +1,5 @@
 /*!
- * Syonet Bootstrap v0.8.0
+ * Syonet Bootstrap v0.8.1
  * O conjunto de ferramentas front-end da Syonet
  * http://syonet.github.com/bootstrap/
  *
@@ -1395,11 +1395,7 @@
 		definition.scope = true;
 		definition.restrict = "A";
 		definition.link = function( scope, element, attrs ) {
-			var popover, controller;
-			var currentEvent = {
-				in: "click",
-				out: getOutEvent( "click" )
-			};
+			var popover, controller, currentEvent;
 
 			element.parents().on( "scroll", function( evt ) {
 				// Fecha o popover se ele estiver aberto e aplica um digest
@@ -1422,6 +1418,7 @@
 			attrs.$observe( "syoPopover", function( config ) {
 				var mustBind = true;
 				config = scope.$eval( config );
+				config.event = config.event || "click";
 
 				controller = findByConfig( config );
 				if ( controller ) {
@@ -1438,7 +1435,7 @@
 
 					// Coloca o popover no DOM
 					$document.find( "body" ).append( popover );
-				} else {
+				} else if ( currentEvent ) {
 					// O evento mudou?
 					if ( currentEvent.in !== config.event ) {
 						// Sim, então vamos remover os listeners que adicionamos
@@ -1451,6 +1448,10 @@
 				}
 
 				instances.push( controller );
+				currentEvent = {
+					in: config.event,
+					out: getOutEvent( config.event )
+				};
 
 				if ( mustBind ) {
 					// Binda o evento de entrada
@@ -1683,7 +1684,8 @@
 				$timeout(function() {
 					var maxWidth, pos;
 
-					element.position( position );
+					// Posiciona o elemento e também seta o z-index
+					element.position( position ).css( "z-index", findZIndex( $popover.target[ 0 ] ) );
 					pos = element.position();
 
 					// Calcula se o posicionamento colocou o elemento pra fora da tela, mas
@@ -1705,6 +1707,18 @@
 						element.position( position );
 					}
 				});
+			}
+
+			// Encontra o z-index acumulado do elemento alvo e retorna um valor propício para posicionar o popover
+			function findZIndex( target ) {
+				var index = 0;
+
+				do {
+					index += Math.max( +$( target ).css( "z-index" ) || 0, 0 );
+					target = target.parentNode;
+				} while ( target != null && target.nodeType === 1 );
+
+				return index + 1;
 			}
 
 			function closeTooltip() {
