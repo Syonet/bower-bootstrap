@@ -1,5 +1,5 @@
 /*!
- * Syonet Bootstrap v0.8.1
+ * Syonet Bootstrap v0.8.2
  * O conjunto de ferramentas front-end da Syonet
  * http://syonet.github.com/bootstrap/
  *
@@ -15,13 +15,6 @@
 		"syonet.tooltip"
 	]);
 }( angular );
-/**
- * syoCheckList
- * ------------
- * Diretiva para criar Check Lists do Syonet Bootstrap, utilizando checkboxes.
- *
- * @docs-link
- */
 !function( $, ng ) {
 	"use strict";
 
@@ -185,15 +178,6 @@
 	});
 
 }( jQuery, angular );
-/**
- * syoClick
- * --------
- * Diretiva para links que faz eval de uma expressão no escopo atual e depois acessa o atributo href
- * do elemento. Se a expressão retornar uma promise, então syoClick irá aguardar a promise ser
- * resolvida.
- *
- * @docs-link
- */
 !function( $, ng ) {
 	"use strict";
 
@@ -240,14 +224,6 @@
 	}]);
 
 }( jQuery, angular );
-/**
- * contains
- * --------
- * Filtro que retorna um boolean sugerindo a existência de um elemento passado por argumento em um
- * array de entrada.
- *
- * @docs-link
- */
 !function( $, ng ) {
 	"use strict";
 
@@ -262,13 +238,6 @@
 	});
 
 }( jQuery, angular );
-/**
- * syoDataGrid
- * -----------
- * Diretiva para criar data grids do Syonet Bootstrap.
- *
- * @docs-link
- */
 !function( $, ng ) {
 	"use strict";
 
@@ -514,17 +483,10 @@
 	]);
 
 }( jQuery, angular );
-/**
- * syoDatepicker
- * -------------
- * Diretiva que instancia um jQuery UI Datepicker no elemento.
- *
- * @docs-link
- */
 !function( $, ng ) {
 	"use strict";
 
-	ng.module( "syonet" ).directive( "syoDatepicker", function() {
+	ng.module( "syonet" ).directive( "syoDatepicker", [ "$timeout", function( $timeout ) {
 		var definition = {};
 
 		definition.restrict = "A";
@@ -554,7 +516,9 @@
 			}
 
 			// Instancia o datepicker
-			$element.datepicker( options );
+			$timeout(function() {
+				$element.datepicker( options );
+			});
 
 			// Quando há um botão para exibir o datepicker...
 			$button = $element.next( ".ui-datepicker-trigger" );
@@ -570,21 +534,9 @@
 		};
 
 		return definition;
-	});
+	}]);
 
 }( jQuery, angular );
-/**
- * $dialog
- * -------
- * Provider para criar um jQuery UI Dialog programaticamente.
- *
- * syoDialog
- * ---------
- * Diretiva que instancia um jQuery UI Dialog no elemento atual, podendo opcionalmente bindar um
- * objeto de controle no escopo atual.
- *
- * @docs-link
- */
 !function( $, ng ) {
 	"use strict";
 
@@ -758,13 +710,6 @@
 	});
 
 }( jQuery, angular );
-/**
- * syoFieldError
- * -------------
- * Diretiva para rapidamente criar um erro de campo de formulário padrão da Syonet.
- *
- * @docs-link
- */
 !function( $, ng ) {
 	"use strict";
 
@@ -782,13 +727,6 @@
 	});
 
 }( jQuery, angular );
-/**
- * syoGiveFocus
- * ------------
- * Diretiva para dar foco a um elemento utilizando data-binding.
- *
- * @docs-link
- */
 !function( $, ng ) {
 	"use strict";
 
@@ -814,13 +752,6 @@
 	});
 
 }( jQuery, angular );
-/**
- * syoInitData
- * -----------
- * Diretiva para facilmente setar variáveis no escopo atual. Útil para dados inicializados com a página.
- *
- * @docs-link
- */
 !function( $, ng ) {
 	"use strict";
 
@@ -849,13 +780,6 @@
 		};
 	});
 }( jQuery, angular );
-/**
- * $localStorage
- * -------------
- * API para interagir com o localStorage no Angular.js.
- *
- * @docs-link
- */
 !function( $, ng ) {
 	"use strict";
 
@@ -896,14 +820,6 @@
 	]);
 
 }( jQuery, angular );
-/**
- * syoMaskOverride
- * ---------------
- * Diretiva para ser utilizada em conjunto com a diretiva ui-mask, cujo valor setado no ng-model
- * é bugado, removendo caracteres que não são da máscara (ex. 9-99 vira 999 no ui-mask puro).
- *
- * @docs-link
- */
 !function( $, ng ) {
 	"use strict";
 
@@ -944,13 +860,6 @@
 	});
 
 }( jQuery, angular );
-/**
- * syoMonthpicker
- * --------------
- * Diretiva para criar um seletor de ano/mês.
- *
- * @docs-link
- */
 !function( $, ng ) {
 	"use strict";
 
@@ -1239,8 +1148,11 @@
 				var notification = {};
 
 				notification.default = $.proxy( createNotification, null, "" );
-				notification.error = $.proxy( createNotification, null, "error" );
-				notification.success = $.proxy( createNotification, null, "success" );
+
+				// Cria métodos pra todos os estilos do Bootstrap
+				[ "error", "success", "warning", "info" ].forEach(function( style ) {
+					notification[ style ] = $.proxy( createNotification, null, style );
+				});
 
 				return notification;
 
@@ -1269,13 +1181,6 @@
 		element.data( NOTIFICATION_TOP_KEY, element.cssUnit( "top" )[ 0 ] );
 	}
 }( jQuery, angular );
-/**
- * offset
- * ------
- * Filtro para fazer o offset dos dados de um array de entrada.
- *
- * @docs-link
- */
 !function( $, ng ) {
 	"use strict";
 
@@ -1288,14 +1193,6 @@
 	});
 
 }( jQuery, angular );
-/**
- * syoOverlay
- * ----------
- * Diretiva para criar um overlay do Syonet Bootstrap rapidamente, podendo exibi-lo/ocultá-lo usando
- * data binding do Angular.js.
- *
- * @docs-link
- */
 !function( $, ng ) {
 	"use strict";
 
@@ -1322,13 +1219,6 @@
 	});
 
 }( jQuery, angular );
-/**
- * pick
- * ----
- * Filtro que retorna um objeto contendo apenas a chave informada por argumento.
- *
- * @docs-link
- */
 !function( $, ng ) {
 	"use strict";
 
@@ -1348,11 +1238,6 @@
 	});
 
 }( jQuery, angular );
-/**
- * syoPopover
- * ----------
- * Diretiva para criar um popover que abrirá ao interagir com o elemento (clique, mouseover, etc).
- */
 !function( $, ng ) {
 	"use strict";
 
@@ -1461,18 +1346,25 @@
 					if ( currentEvent.in !== currentEvent.out ) {
 						element.on( currentEvent.out, toggle );
 					}
+
+					// Binda eventos de abertura/fechamento do popover
+					element.on( "popoveropen", config.onOpen );
+					element.on( "popoverclose", config.onClose );
 				}
 			});
 
 			function toggle( evt ) {
 				var isEventIn = evt.type === currentEvent.in;
+				var otherTarget = controller.target !== element;
 
 				// Para a propagação
 				evt.stopPropagation();
 
+				// Aponta pro nosso elemento atual
+				controller.target = element;
+
 				// Se o controller está apontando para outro elemento, vamos abrir o popover.
-				// Faremos o controller apontar para o elemento atual mais pra frente
-				if ( controller.target !== element ) {
+				if ( otherTarget ) {
 					// Se o evento for de abertura do popover, faremos isso
 					if ( isEventIn ) {
 						controller.open();
@@ -1484,9 +1376,6 @@
 					// Eventos diferentes, abre se for evento de entrada, ou o contrário
 					isEventIn ? controller.open() : controller.close();
 				}
-
-				// Manda ele apontar pro nosso elemento atual
-				controller.target = element;
 
 				// Executa um digest
 				scope.$apply();
@@ -1515,26 +1404,37 @@
 		ctrl.$isOpen = false;
 
 		ctrl.open = function() {
+			var evt;
+
 			if ( ctrl.$isOpen ) {
 				return;
 			}
 
-			ctrl.$isOpen = true;
+			evt = new $.Event( "popoveropen" );
+			ctrl.target.trigger( evt, [ ctrl.config.scope, ctrl ] );
 
-			if ( ng.isFunction( ctrl.config.onOpen ) ) {
-				ctrl.config.onOpen( ctrl.config.scope, ctrl );
+			if ( evt.isDefaultPrevented() ) {
+				return;
 			}
+
+			ctrl.$isOpen = true;
 		};
 
 		ctrl.close = function() {
+			var evt;
+
 			if ( !ctrl.$isOpen ) {
 				return;
 			}
 
-			ctrl.$isOpen = false;
-			if ( ng.isFunction( ctrl.config.onClose ) ) {
-				ctrl.config.onClose( ctrl.config.scope, ctrl );
+			evt = new $.Event( "popoverclose" );
+			ctrl.target.trigger( evt, [ ctrl.config.scope, ctrl ] );
+
+			if ( evt.isDefaultPrevented() ) {
+				return;
 			}
+
+			ctrl.$isOpen = false;
 		};
 
 		ctrl.reposition = function() {
@@ -1744,13 +1644,7 @@
 	});
 
 }( jQuery, angular );
-/**
- * syoProgressbar
- * --------------
- * Diretiva para criar e controlar a porcentagem de uma progressbar do Syonet Bootstrap.
- *
- * @docs-link
- */
+
 !function( $, ng ) {
 	"use strict";
 
@@ -1775,13 +1669,6 @@
 	});
 
 }( jQuery, angular );
-/**
- * syoRadioList
- * ------------
- * Diretiva para criar Check Lists do Syonet Bootstrap, utilizando radio buttons.
- *
- * @docs-link
- */
 !function( $, ng ) {
 	"use strict";
 
@@ -1872,14 +1759,6 @@
 	});
 
 }( jQuery, angular );
-/**
- * range
- * -----
- * Filtro que retorna um array do tamanho especificado, útil para utilizar com ng-repeat de forma
- * arbitrária.
- *
- * @docs-link
- */
 !function( $, ng ) {
 	"use strict";
 
@@ -1898,13 +1777,6 @@
 	});
 
 }( jQuery, angular );
-/**
- * removeAccents
- * -------------
- * Filtro que remove acentuação da string de entrada.
- *
- * @docs-link
- */
 !function( $, ng ) {
 	"use strict";
 
@@ -2076,13 +1948,6 @@
 		return definition;
 	}]);
 }( angular );
-/**
- * round
- * -----
- * Arredonda um numero para um determinado número de casas decimais.
- *
- * @docs-link
- */
 !function( $, ng ) {
 	"use strict";
 
@@ -2100,13 +1965,6 @@
 	});
 
 }( jQuery, angular );
-/**
- * syoSlider
- * ---------
- * Diretiva que instancia um jQuery UI Slider.
- *
- * @docs-link
- */
 !function( $, ng ) {
 	"use strict";
 
@@ -2159,13 +2017,6 @@
 	]);
 
 }( jQuery, angular );
-/**
- * syoTabs
- * -------
- * Diretiva que instancia um jQuery UI Tabs.
- *
- * @docs-link
- */
 !function( $, ng ) {
 	"use strict";
 
@@ -2224,13 +2075,6 @@
 	]);
 
 }( jQuery, angular );
-/**
- * $templatePromise
- * ----------------
- * Provider para retornar uma promise para um template HTML ou para uma URL de um template.
- *
- * @docs-link
- */
 !function( $, ng ) {
 	"use strict";
 
@@ -2250,13 +2094,6 @@
 	]);
 
 }( jQuery, angular );
-/**
- * toArray
- * -------
- * Filtro que converte os dados de entrada em um array.
- *
- * @docs-link
- */
 !function( $, ng ) {
 	"use strict";
 
@@ -2360,9 +2197,12 @@
 					tooltip.addClass( "syo-tooltip-visible syo-tooltip-" + position ).text( title );
 					tooltip.position( positionConfig );
 
-					target.on( "$destroy", function destroyCb() {
+					// Adiciona evento $destroy no target e nos seus elementos pai
+					target.parents().addBack().on( "$destroy", function destroyCb() {
 						$tooltip.close();
-						target.off( "$destroy", destroyCb );
+
+						// Remove o evento $destroy do target e seus elementos pai
+						target.parents().addBack().off( "$destroy", destroyCb );
 					});
 				}, syoTooltipConfig.timeout );
 			});
@@ -2386,13 +2226,6 @@
 		return definition;
 	});
 }( jQuery, angular );
-/**
- * syoTouchTest
- * ------------
- * Diretiva que adiciona uma classe no elemento, caso o browser seja touch sensitive.
- *
- * @docs-link
- */
 !function( $, ng ) {
 	"use strict";
 
@@ -2411,13 +2244,6 @@
 
 }( jQuery, angular );
 /* jshint unused: false */
-/**
- * $urlbuilder
- * -----------
- * Construtor de URLs, convertendo um objeto na query string.
- *
- * @docs-link
- */
 !function( $, ng ) {
 	"use strict";
 
@@ -2685,13 +2511,6 @@
 	});
 
 }( jQuery, angular );
-/**
- * $worker
- * -------
- * Provider para instanciar Web Workers.
- *
- * @docs-link
- */
 !function( $, ng ) {
 	"use strict";
 

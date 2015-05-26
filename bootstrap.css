@@ -1,5 +1,5 @@
 /*!
- * Syonet Bootstrap v0.8.1
+ * Syonet Bootstrap v0.8.2
  * O conjunto de ferramentas front-end da Syonet
  * http://syonet.github.com/bootstrap/
  *
@@ -1225,6 +1225,23 @@ dl.dl-inline dd:not( .col ):not( [ class*="offset-" ] ) {
 }
 .text-justify {
   text-align: justify;
+}
+/* Cores de texto
+   -------------- */
+.syo-text-success {
+  color: #5cb85c;
+}
+.syo-text-warning {
+  color: #efd24f;
+}
+.syo-text-error {
+  color: #d9534f;
+}
+.syo-text-info {
+  color: #1771b2;
+}
+.syo-text-default {
+  color: #222222;
 }
 /* ==============================================================================================
    Código
@@ -3371,6 +3388,7 @@ h4 small {
   display: block;
   padding: 5px 10px;
   font-size: 1.2rem;
+  color: #777;
 }
 .syo-nav-tray li:hover a {
   background-color: #eeeeee;
@@ -4678,24 +4696,26 @@ body.syo-body-navbar {
   display: inline;
 }
 .syo-notification > a {
-  color: #222222;
+  color: inherit;
   text-decoration: underline;
 }
 /* Notifications - Estilos
    ----------------------- */
+.syo-notification.syo-info {
+  color: #fff;
+  background: #1771b2;
+}
 .syo-notification.syo-success {
   color: #fff;
   background: #5cb85c;
 }
-.syo-notification.syo-success a {
-  color: #fff;
+.syo-notification.syo-warning {
+  color: #222222;
+  background: #efd24f;
 }
 .syo-notification.syo-error {
   color: #fff;
   background: #d9534f;
-}
-.syo-notification.syo-error a {
-  color: #fff;
 }
 /* Tooltips
    ============================================================================================== */
