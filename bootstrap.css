@@ -4679,16 +4679,14 @@ body.syo-body-navbar {
    Notifications
    ============================================================================================== */
 .syo-notification {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
   z-index: 1010;
   display: block;
+  margin-bottom: 5px;
   padding: 12.5px 15px;
+  border: 1px solid;
   color: #222222;
-  text-align: center;
-  background: #eeeeee;
+  border-color: #d5d5d5;
+  background-color: #eeeeee;
   -webkit-box-shadow: 0 0 3px 1px rgba(0, 0, 0, 0.05);
   box-shadow: 0 0 3px 1px rgba(0, 0, 0, 0.05);
 }
@@ -4702,20 +4700,34 @@ body.syo-body-navbar {
 /* Notifications - Estilos
    ----------------------- */
 .syo-notification.syo-info {
-  color: #fff;
-  background: #1771b2;
+  color: #ffffff;
+  border-color: #115485;
+  background-color: #1771b2;
 }
 .syo-notification.syo-success {
-  color: #fff;
-  background: #5cb85c;
+  color: #ffffff;
+  border-color: #449d44;
+  background-color: #5cb85c;
 }
 .syo-notification.syo-warning {
   color: #222222;
-  background: #efd24f;
+  border-color: #ebc620;
+  background-color: #efd24f;
 }
 .syo-notification.syo-error {
-  color: #fff;
-  background: #d9534f;
+  color: #ffffff;
+  border-color: #c9302c;
+  background-color: #d9534f;
+}
+/* Notifications - Fixada
+   ---------------------- */
+.syo-notification-fixed {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  text-align: center;
+  border: 0;
 }
 /* Tooltips
    ============================================================================================== */
