@@ -1,140 +1,5 @@
 /*!
- * Syonet Bootstrap v0.8.2
- * O conjunto de ferramentas front-end da Syonet
- * http://syonet.github.com/bootstrap/
- *
- * Created by Syonet CRM <syonet@syonet.com>
- * http://www.syonet.com
- */
-
-/*!
- * Syonet Bootstrap v0.8.2
- * O conjunto de ferramentas front-end da Syonet
- * http://syonet.github.com/bootstrap/
- *
- * Created by Syonet CRM <syonet@syonet.com>
- * http://www.syonet.com
- */
-
-/*!
- * Syonet Bootstrap v0.8.2
- * O conjunto de ferramentas front-end da Syonet
- * http://syonet.github.com/bootstrap/
- *
- * Created by Syonet CRM <syonet@syonet.com>
- * http://www.syonet.com
- */
-
-/*!
- * Syonet Bootstrap v0.8.2
- * O conjunto de ferramentas front-end da Syonet
- * http://syonet.github.com/bootstrap/
- *
- * Created by Syonet CRM <syonet@syonet.com>
- * http://www.syonet.com
- */
-
-/*!
- * Syonet Bootstrap v0.8.2
- * O conjunto de ferramentas front-end da Syonet
- * http://syonet.github.com/bootstrap/
- *
- * Created by Syonet CRM <syonet@syonet.com>
- * http://www.syonet.com
- */
-
-/*!
- * Syonet Bootstrap v0.8.2
- * O conjunto de ferramentas front-end da Syonet
- * http://syonet.github.com/bootstrap/
- *
- * Created by Syonet CRM <syonet@syonet.com>
- * http://www.syonet.com
- */
-
-/*!
- * Syonet Bootstrap v0.8.2
- * O conjunto de ferramentas front-end da Syonet
- * http://syonet.github.com/bootstrap/
- *
- * Created by Syonet CRM <syonet@syonet.com>
- * http://www.syonet.com
- */
-
-/*!
- * Syonet Bootstrap v0.8.2
- * O conjunto de ferramentas front-end da Syonet
- * http://syonet.github.com/bootstrap/
- *
- * Created by Syonet CRM <syonet@syonet.com>
- * http://www.syonet.com
- */
-
-/*!
- * Syonet Bootstrap v0.8.2
- * O conjunto de ferramentas front-end da Syonet
- * http://syonet.github.com/bootstrap/
- *
- * Created by Syonet CRM <syonet@syonet.com>
- * http://www.syonet.com
- */
-
-/*!
- * Syonet Bootstrap v0.8.2
- * O conjunto de ferramentas front-end da Syonet
- * http://syonet.github.com/bootstrap/
- *
- * Created by Syonet CRM <syonet@syonet.com>
- * http://www.syonet.com
- */
-
-/*!
- * Syonet Bootstrap v0.8.2
- * O conjunto de ferramentas front-end da Syonet
- * http://syonet.github.com/bootstrap/
- *
- * Created by Syonet CRM <syonet@syonet.com>
- * http://www.syonet.com
- */
-
-/*!
- * Syonet Bootstrap v0.8.2
- * O conjunto de ferramentas front-end da Syonet
- * http://syonet.github.com/bootstrap/
- *
- * Created by Syonet CRM <syonet@syonet.com>
- * http://www.syonet.com
- */
-
-/*!
- * Syonet Bootstrap v0.8.2
- * O conjunto de ferramentas front-end da Syonet
- * http://syonet.github.com/bootstrap/
- *
- * Created by Syonet CRM <syonet@syonet.com>
- * http://www.syonet.com
- */
-
-/*!
- * Syonet Bootstrap v0.8.2
- * O conjunto de ferramentas front-end da Syonet
- * http://syonet.github.com/bootstrap/
- *
- * Created by Syonet CRM <syonet@syonet.com>
- * http://www.syonet.com
- */
-
-/*!
- * Syonet Bootstrap v0.8.2
- * O conjunto de ferramentas front-end da Syonet
- * http://syonet.github.com/bootstrap/
- *
- * Created by Syonet CRM <syonet@syonet.com>
- * http://www.syonet.com
- */
-
-/*!
- * Syonet Bootstrap v0.8.2
+ * Syonet Bootstrap v0.9.6
  * O conjunto de ferramentas front-end da Syonet
  * http://syonet.github.com/bootstrap/
  *
@@ -890,7 +755,7 @@
 !function( $, ng ) {
 	"use strict";
 
-	ng.module( "syonet" ).directive( "syoInitData", function() {
+	ng.module( "syonet" ).directive( "syoInitData", function( $parse ) {
 		return {
 			restrict: "E",
 			replace: true,
@@ -910,7 +775,7 @@
 				} catch ( e ) {}
 
 				// Seta a chave no escopo
-				$scope[ key ] = value;
+				$parse( key ).assign( $scope, value );
 			}
 		};
 	});
